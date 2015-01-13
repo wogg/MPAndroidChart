@@ -22,13 +22,13 @@ import java.util.ArrayList;
 public class Transformer {
 
     /** matrix to map the values to the screen pixels */
-    private Matrix mMatrixValueToPx = new Matrix();
+    protected Matrix mMatrixValueToPx = new Matrix();
 
     /** matrix for handling the different offsets of the chart */
-    private Matrix mMatrixOffset = new Matrix();
+    protected Matrix mMatrixOffset = new Matrix();
 
     /** matrix used for touch events */
-    private final Matrix mMatrixTouch = new Matrix();
+    protected final Matrix mMatrixTouch = new Matrix();
 
     /** if set to true, the y-axis is inverted and low values start at the top */
     private boolean mInvertYAxis = false;

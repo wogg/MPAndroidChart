@@ -15,7 +15,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -33,10 +33,10 @@ import com.xxmassdeveloper.mpchartexample.notimportant.DemoBase;
 
 import java.util.ArrayList;
 
-public class BarChartActivity extends DemoBase implements OnSeekBarChangeListener,
+public class HorizontalBarChartActivity extends DemoBase implements OnSeekBarChangeListener,
         OnChartValueSelectedListener {
 
-    protected BarChart mChart;
+    protected HorizontalBarChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
 
@@ -45,7 +45,7 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_barchart);
+        setContentView(R.layout.activity_horizontalbarchart);
 
         tvX = (TextView) findViewById(R.id.tvXMax);
         tvY = (TextView) findViewById(R.id.tvYMax);
@@ -53,8 +53,10 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
         mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
 
-        mChart = (BarChart) findViewById(R.id.chart1);
+        mChart = (HorizontalBarChart) findViewById(R.id.chart1);
         mChart.setOnChartValueSelectedListener(this);
+        
+        mChart.setDrawBarShadow(false);
 
         // enable the drawing of values
         mChart.setDrawYValues(true);
@@ -123,114 +125,114 @@ public class BarChartActivity extends DemoBase implements OnSeekBarChangeListene
         // mChart.setDrawLegend(false);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.actionToggleValues: {
-                if (mChart.isDrawYValuesEnabled())
-                    mChart.setDrawYValues(false);
-                else
-                    mChart.setDrawYValues(true);
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggle3D: {
-                if (mChart.is3DEnabled())
-                    mChart.set3DEnabled(false);
-                else
-                    mChart.set3DEnabled(true);
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleHighlight: {
-                if (mChart.isHighlightEnabled())
-                    mChart.setHighlightEnabled(false);
-                else
-                    mChart.setHighlightEnabled(true);
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionTogglePinch: {
-                if (mChart.isPinchZoomEnabled())
-                    mChart.setPinchZoom(false);
-                else
-                    mChart.setPinchZoom(true);
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleHighlightArrow: {
-                if (mChart.isDrawHighlightArrowEnabled())
-                    mChart.setDrawHighlightArrow(false);
-                else
-                    mChart.setDrawHighlightArrow(true);
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleStartzero: {
-                if (mChart.isStartAtZeroEnabled())
-                    mChart.setStartAtZero(false);
-                else
-                    mChart.setStartAtZero(true);
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.animateX: {
-                mChart.animateX(3000);
-                break;
-            }
-            case R.id.animateY: {
-                mChart.animateY(3000);
-                break;
-            }
-            case R.id.animateXY: {
-
-                mChart.animateXY(3000, 3000);
-                break;
-            }
-            case R.id.actionToggleAdjustXLegend: {
-                XLabels xLabels = mChart.getXLabels();
-
-                if (xLabels.isAdjustXLabelsEnabled())
-                    xLabels.setAdjustXLabels(false);
-                else
-                    xLabels.setAdjustXLabels(true);
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleFilter: {
-
-                Approximator a = new Approximator(ApproximatorType.DOUGLAS_PEUCKER, 25);
-
-                if (!mChart.isFilteringEnabled()) {
-                    mChart.enableFiltering(a);
-                } else {
-                    mChart.disableFiltering();
-                }
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionSave: {
-                if (mChart.saveToGallery("title" + System.currentTimeMillis(), 50)) {
-                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
-                            Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
-                            .show();
-                break;
-            }
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.bar, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.actionToggleValues: {
+//                if (mChart.isDrawYValuesEnabled())
+//                    mChart.setDrawYValues(false);
+//                else
+//                    mChart.setDrawYValues(true);
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionToggle3D: {
+//                if (mChart.is3DEnabled())
+//                    mChart.set3DEnabled(false);
+//                else
+//                    mChart.set3DEnabled(true);
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionToggleHighlight: {
+//                if (mChart.isHighlightEnabled())
+//                    mChart.setHighlightEnabled(false);
+//                else
+//                    mChart.setHighlightEnabled(true);
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionTogglePinch: {
+//                if (mChart.isPinchZoomEnabled())
+//                    mChart.setPinchZoom(false);
+//                else
+//                    mChart.setPinchZoom(true);
+//
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionToggleHighlightArrow: {
+//                if (mChart.isDrawHighlightArrowEnabled())
+//                    mChart.setDrawHighlightArrow(false);
+//                else
+//                    mChart.setDrawHighlightArrow(true);
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionToggleStartzero: {
+//                if (mChart.isStartAtZeroEnabled())
+//                    mChart.setStartAtZero(false);
+//                else
+//                    mChart.setStartAtZero(true);
+//
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.animateX: {
+//                mChart.animateX(3000);
+//                break;
+//            }
+//            case R.id.animateY: {
+//                mChart.animateY(3000);
+//                break;
+//            }
+//            case R.id.animateXY: {
+//
+//                mChart.animateXY(3000, 3000);
+//                break;
+//            }
+//            case R.id.actionToggleAdjustXLegend: {
+//                XLabels xLabels = mChart.getXLabels();
+//
+//                if (xLabels.isAdjustXLabelsEnabled())
+//                    xLabels.setAdjustXLabels(false);
+//                else
+//                    xLabels.setAdjustXLabels(true);
+//
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionToggleFilter: {
+//
+//                Approximator a = new Approximator(ApproximatorType.DOUGLAS_PEUCKER, 25);
+//
+//                if (!mChart.isFilteringEnabled()) {
+//                    mChart.enableFiltering(a);
+//                } else {
+//                    mChart.disableFiltering();
+//                }
+//                mChart.invalidate();
+//                break;
+//            }
+//            case R.id.actionSave: {
+//                if (mChart.saveToGallery("title" + System.currentTimeMillis(), 50)) {
+//                    Toast.makeText(getApplicationContext(), "Saving SUCCESSFUL!",
+//                            Toast.LENGTH_SHORT).show();
+//                } else
+//                    Toast.makeText(getApplicationContext(), "Saving FAILED!", Toast.LENGTH_SHORT)
+//                            .show();
+//                break;
+//            }
+//        }
+//        return true;
+//    }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
